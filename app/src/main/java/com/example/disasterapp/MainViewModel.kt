@@ -1,6 +1,5 @@
 package com.example.disasterapp
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,9 +16,6 @@ enum class Status {
 }
 
 class MainViewModel: ViewModel() {
-    init {
-        Log.d("try","hit")
-    }
     private val _disasterList = MutableLiveData<List<DataGeometries>>()
     val disasterList: LiveData<List<DataGeometries>> = _disasterList
 
@@ -30,13 +26,11 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             _status.value = Status.LOADING
             try {
-                _disasterList.value = Report.retrofitService.getDisasterData(null,null,null).result.objects.output.geometries
+                _disasterList.value = Report.retrofitService.getDisasterData(null,null,604800).result.objects.output.geometries
                 _status.value = Status.SUCCESS
-
             } catch (
                 e:Exception
             ) {
-                Log.d("error",e.toString())
                 _status.value = Status.ERROR
             }
         }

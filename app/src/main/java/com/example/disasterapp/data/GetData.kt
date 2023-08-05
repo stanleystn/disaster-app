@@ -16,7 +16,7 @@ interface GetData {
     suspend fun getDisasterData(
         @Query("admin") area:String?,
         @Query("disaster") disaster:String?,
-        @Query("timeperiod") timeRange:String?
+        @Query("timeperiod") timeRange:Int?
     ):DisasterData
 }
 
