@@ -26,7 +26,7 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             _status.value = Status.LOADING
             try {
-                _disasterList.value = Report.retrofitService.getDisasterData(null,null,604800).result.objects.output.geometries
+                _disasterList.value = Report.retrofitService.getDisasterData(null,null,null).result.objects.output.geometries
                 _status.value = Status.SUCCESS
             } catch (
                 e:Exception
